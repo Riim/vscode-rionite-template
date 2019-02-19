@@ -1,0 +1,23 @@
+{
+    "name": "vscode-rionite-template",
+    "displayName": "vscode-rionite-template",
+    "description": "RioniteTemplate support for Visual Studio Code",
+    "version": "0.1.0",
+    "publisher": "riim",
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "contributes": {
+        "languages": [{
+            "id": "rionite-template",
+            "aliases": ["rionite-template", "RioniteTemplate", "rnt", "rntpl"],
+            "extensions": [".rnt", ".rntpl", ".rionite-template"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "rionite-template",
+            "scopeName": "source.rnt",
+            "path": "./syntaxes/RioniteTemplate.tmLanguage.json"
+        }]
+    }
+}

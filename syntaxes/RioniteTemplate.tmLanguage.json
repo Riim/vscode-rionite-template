@@ -1,0 +1,135 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "RioniteTemplate",
+	"patterns": [
+		{ "include": "#inline_comment" },
+		{ "include": "#multiline_comment" },
+		{ "include": "#namespace_declaration" },
+		{ "include": "#super_call" },
+		{ "include": "#tag_name" },
+		{ "include": "#element_names" },
+		{ "include": "#attributes_block" },
+		{ "include": "#single_quote_string" },
+		{ "include": "#double_quote_string" },
+		{ "include": "#multiline_string" }
+	],
+	"repository": {
+		"namespace_declaration": {
+			"name": "support.class.rnt",
+			"match": "#[a-zA-Z][\\-\\w]*",
+			"patterns": []
+		},
+		"tag_name": {
+			"name": "entity.name.tag.rnt",
+			"match": "@?[a-zA-Z][\\-\\w]*(?::[_a-zA-Z][\\-\\w]*)?",
+			"patterns": []
+		},
+		"element_names": {
+			"name": "function.declaration.rnt",
+			"match": "/(?:\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*,\\s*([a-zA-Z][\\-\\w]*))*",
+			"captures": {
+				"1": { "name": "entity.name.function.rnt" },
+				"2": { "name": "entity.name.type.rnt" }
+			},
+			"patterns": []
+		},
+		"attributes_block": {
+			"name": "meta.tagname.rnt",
+			"begin": "\\(",
+			"end": "\\)",
+			"patterns": [
+				{ "include": "#super_call" },
+				{
+					"name": "variable.parameter.rnt",
+					"match": "[_a-zA-Z][\\-\\w]*(?::[_a-zA-Z][\\-\\w]*)?"
+				},
+				{
+					"name": "string.rnt",
+					"begin": "(=)\\s*(?!['\"`,)])",
+					"beginCaptures": {
+						"1": { "name": "keyword.operator.assignment.rnt" }
+					},
+					"end": "\\S(?=\\s*[\\r\\n,)])"
+				},
+				{
+					"name": "keyword.operator.assignment.rnt",
+					"match": "="
+				},
+				{ "include": "#single_quote_string" },
+				{ "include": "#double_quote_string" },
+				{ "include": "#multiline_string" },
+				{ "include": "#inline_comment" },
+				{ "include": "#multiline_comment" }
+			]
+		},
+		"super_call": {
+			"name": "storage.type.function.call.rnt",
+			"match": "\\bsuper(?:\\.([a-zA-Z][\\-\\w]*))?(!)",
+			"captures": {
+				"1": { "name": "entity.name.function.rnt" }
+			},
+			"patterns": []
+		},
+		"single_quote_string": {
+			"name": "string.quoted.single.rnt",
+			"begin": "'",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.string.begin.rnt" }
+			},
+			"end": "'|(?:\\\\\\\\)*[^\\\\]$",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.string.end.rnt" }
+			},
+			"patterns": [{
+				"include": "#string_escaped_char"
+			}]
+		},
+		"double_quote_string": {
+			"name": "string.quoted.double.rnt",
+			"begin": "\"",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.string.begin.rnt" }
+			},
+			"end": "\"|(?:\\\\\\\\)*[^\\\\]$",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.string.end.rnt" }
+			},
+			"patterns": [{
+				"include": "#string_escaped_char"
+			}]
+		},
+		"multiline_string": {
+			"name": "string.quoted.block.rnt",
+			"begin": "`",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.string.begin.rnt" }
+			},
+			"end": "`",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.string.end.rnt" }
+			},
+			"patterns": []
+		},
+		"string_escaped_char": {
+			"patterns": [{
+				"name": "constant.character.escape.rnt",
+				"match": "\\\\(\\\\|['\"/bfnrt]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4})"
+			}, {
+				"name": "invalid.illegal.unknown-escape.rnt",
+				"match": "\\\\."
+			}]
+		},
+		"inline_comment": {
+			"name": "comment.line.double-slash.rnt",
+			"match": "//.*",
+			"patterns": []
+		},
+		"multiline_comment": {
+			"name": "comment.block.rnt",
+			"begin": "/\\*",
+			"end": "\\*/",
+			"patterns": []
+		}
+	},
+	"scopeName": "source.rnt"
+}
