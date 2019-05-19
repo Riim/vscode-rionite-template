@@ -20,10 +20,14 @@
 		},
 		"element_names": {
 			"name": "function.declaration.rnt",
-			"match": ":(?:\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*:\\s*([a-zA-Z][\\-\\w]*))*",
+			"match": ":(?:\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*:\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*:\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*:\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*:\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*:\\s*([a-zA-Z][\\-\\w]*))?",
 			"captures": {
 				"1": { "name": "entity.name.function.rnt" },
-				"2": { "name": "entity.name.type.rnt" }
+				"2": { "name": "entity.name.type.rnt" },
+				"3": { "name": "entity.name.type.rnt" },
+				"4": { "name": "entity.name.type.rnt" },
+				"5": { "name": "entity.name.type.rnt" },
+				"6": { "name": "entity.name.type.rnt" }
 			},
 			"patterns": []
 		},

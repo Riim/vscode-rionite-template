@@ -2,7 +2,7 @@
     "name": "vscode-rionite-template",
     "displayName": "vscode-rionite-template",
     "description": "RioniteTemplate support for Visual Studio Code",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "publisher": "riim",
     "engines": {
         "vscode": "^1.5.0"
