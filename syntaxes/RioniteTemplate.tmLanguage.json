@@ -4,29 +4,23 @@
 	"patterns": [
 		{ "include": "#inline_comment" },
 		{ "include": "#multiline_comment" },
-		{ "include": "#namespace_declaration" },
 		{ "include": "#super_call" },
 		{ "include": "#tag_name" },
 		{ "include": "#element_names" },
 		{ "include": "#attributes_block" },
 		{ "include": "#single_quote_string" },
 		{ "include": "#double_quote_string" },
-		{ "include": "#multiline_string" }
+		{ "include": "#backquote_quote_string" }
 	],
 	"repository": {
-		"namespace_declaration": {
-			"name": "support.class.rnt",
-			"match": "#[a-zA-Z][\\-\\w]*",
-			"patterns": []
-		},
 		"tag_name": {
 			"name": "entity.name.tag.rnt",
-			"match": "@?[a-zA-Z][\\-\\w]*(?::[_a-zA-Z][\\-\\w]*)?",
+			"match": "@?[a-zA-Z][\\-\\w]*",
 			"patterns": []
 		},
 		"element_names": {
 			"name": "function.declaration.rnt",
-			"match": "/(?:\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*,\\s*([a-zA-Z][\\-\\w]*))*",
+			"match": ":(?:\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*:\\s*([a-zA-Z][\\-\\w]*))*",
 			"captures": {
 				"1": { "name": "entity.name.function.rnt" },
 				"2": { "name": "entity.name.type.rnt" }
@@ -57,7 +51,7 @@
 				},
 				{ "include": "#single_quote_string" },
 				{ "include": "#double_quote_string" },
-				{ "include": "#multiline_string" },
+				{ "include": "#backquote_quote_string" },
 				{ "include": "#inline_comment" },
 				{ "include": "#multiline_comment" }
 			]
@@ -71,12 +65,12 @@
 			"patterns": []
 		},
 		"single_quote_string": {
-			"name": "string.quoted.single.rnt",
+			"name": "string.quoted.block.rnt",
 			"begin": "'",
 			"beginCaptures": {
 				"0": { "name": "punctuation.definition.string.begin.rnt" }
 			},
-			"end": "'|(?:\\\\\\\\)*[^\\\\]$",
+			"end": "'",
 			"endCaptures": {
 				"0": { "name": "punctuation.definition.string.end.rnt" }
 			},
@@ -85,12 +79,12 @@
 			}]
 		},
 		"double_quote_string": {
-			"name": "string.quoted.double.rnt",
+			"name": "string.quoted.block.rnt",
 			"begin": "\"",
 			"beginCaptures": {
 				"0": { "name": "punctuation.definition.string.begin.rnt" }
 			},
-			"end": "\"|(?:\\\\\\\\)*[^\\\\]$",
+			"end": "\"",
 			"endCaptures": {
 				"0": { "name": "punctuation.definition.string.end.rnt" }
 			},
@@ -98,7 +92,7 @@
 				"include": "#string_escaped_char"
 			}]
 		},
-		"multiline_string": {
+		"backquote_quote_string": {
 			"name": "string.quoted.block.rnt",
 			"begin": "`",
 			"beginCaptures": {
@@ -108,7 +102,9 @@
 			"endCaptures": {
 				"0": { "name": "punctuation.definition.string.end.rnt" }
 			},
-			"patterns": []
+			"patterns": [{
+				"include": "#string_escaped_char"
+			}]
 		},
 		"string_escaped_char": {
 			"patterns": [{
