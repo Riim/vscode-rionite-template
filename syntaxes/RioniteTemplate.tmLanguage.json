@@ -39,7 +39,7 @@
 				{ "include": "#super_call" },
 				{
 					"name": "variable.parameter.rnt",
-					"match": "[_a-zA-Z][\\-\\w]*(?::[_a-zA-Z][\\-\\w]*)?"
+					"match": "@?[_a-zA-Z][\\-\\w]*(?::[_a-zA-Z][\\-\\w]*)?"
 				},
 				{
 					"name": "string.rnt",
