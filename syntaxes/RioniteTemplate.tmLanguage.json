@@ -2,15 +2,15 @@
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "RioniteTemplate",
 	"patterns": [
-		{ "include": "#inline_comment" },
-		{ "include": "#multiline_comment" },
 		{ "include": "#super_call" },
 		{ "include": "#tag_name" },
 		{ "include": "#element_names" },
 		{ "include": "#attributes_block" },
 		{ "include": "#single_quote_string" },
 		{ "include": "#double_quote_string" },
-		{ "include": "#backquote_quote_string" }
+		{ "include": "#backquote_quote_string" },
+		{ "include": "#inline_comment" },
+		{ "include": "#multiline_comment" }
 	],
 	"repository": {
 		"tag_name": {
@@ -20,14 +20,19 @@
 		},
 		"element_names": {
 			"name": "function.declaration.rnt",
-			"match": ":(?:\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*:\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*:\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*:\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*:\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*:\\s*([a-zA-Z][\\-\\w]*))?",
+			"match": "(:)(?:\\s*([a-zA-Z][\\-\\w]*)(!)?)?(?:\\s*(:)\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*(:)\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*(:)\\s*([a-zA-Z][\\-\\w]*))?(?:\\s*(:)\\s*([a-zA-Z][\\-\\w]*))?",
 			"captures": {
-				"1": { "name": "entity.name.function.rnt" },
-				"2": { "name": "entity.name.type.rnt" },
-				"3": { "name": "entity.name.type.rnt" },
-				"4": { "name": "entity.name.type.rnt" },
+				"1": { "name": "punctuation.separator.rnt" },
+				"2": { "name": "entity.name.function.rnt" },
+				"3": { "name": "punctuation.terminator.rnt" },
+				"4": { "name": "punctuation.separator.rnt" },
 				"5": { "name": "entity.name.type.rnt" },
-				"6": { "name": "entity.name.type.rnt" }
+				"6": { "name": "punctuation.separator.rnt" },
+				"7": { "name": "entity.name.type.rnt" },
+				"8": { "name": "punctuation.separator.rnt" },
+				"9": { "name": "entity.name.type.rnt" },
+				"10": { "name": "punctuation.separator.rnt" },
+				"11": { "name": "entity.name.type.rnt" }
 			},
 			"patterns": []
 		},
@@ -62,9 +67,12 @@
 		},
 		"super_call": {
 			"name": "storage.type.function.call.rnt",
-			"match": "\\bsuper(?:\\.([a-zA-Z][\\-\\w]*))?(!)",
+			"match": "\\b(super)(?:(\\.)([a-zA-Z][\\-\\w]*))?(!)",
 			"captures": {
-				"1": { "name": "entity.name.function.rnt" }
+				"1": { "name": "keyword.operator.word.rnt" },
+				"2": { "name": "punctuation.accessor.rnt" },
+				"3": { "name": "entity.name.function.rnt" },
+				"4": { "name": "punctuation.terminator.rnt" }
 			},
 			"patterns": []
 		},
